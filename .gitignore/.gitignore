@@ -5,7 +5,7 @@ import java.util.TimerTask;
 
 public class Main {
     Timer timer;
-    int i;
+    int i=10;
     int j;
 
 
@@ -16,13 +16,12 @@ public class Main {
 
     class NewTimerTask extends TimerTask {
         public void run() {
-                for (i = 0; i < 1; i++) {
+                if (i > 10) {
                     System.out.println("Raquel Grobe");
                     new Main(1);
-                   for (j=i; j > 10; j++){
-                       timer.cancel();
+                   } else {
+                       System.exit(0);
                 }
-                break;
             }
         }
     }
