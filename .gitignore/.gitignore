@@ -2,33 +2,34 @@ package com.company;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 public class Main {
+    Toolkit toolkit;
     Timer timer;
-    int i=10;
-    int j;
 
-
-    public Main (int seconds){
-        timer = new Timer ();
-        timer.schedule (new NewTimerTask(), seconds*1000);
+    public myTimer() {
+        toolkit = Toolkit.getDefaultToolkit();
+        timer = new Timer();
+        timer.schedule(new RemindTask(),
+                       0,        //initial delay
+                       1*1000);  //subsequent rate
     }
 
-    class NewTimerTask extends TimerTask {
+    class RemindTask extends TimerTask {
+        int firstnames = 9;
         public void run() {
-                if (i > 10) {
-                    System.out.println("Raquel Grobe");
-                    new Main(1);
-                   } else {
-                       System.exit(0);
-                }
+            if (firstnames > 0) {
+                toolkit.beep();
+                System.out.println("Raquel Grobe");
+                firstnames--;
+            } else {
+                toolkit.beep(); 
+                System.out.println("Raquel Grobe");
+                //timer.cancel(); // Not necessary because
+                                  // we call System.exit
+                System.exit(0);   // Stops the AWT thread 
+                                  // (and everything else)
             }
         }
     }
-
-    public static void main ( String args [  ]  ) {
-        System.out.println();
-    }
-
-
-}//end of timer class
+    ...
+}
